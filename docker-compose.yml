@@ -1,26 +1,26 @@
-version: "3.1"
+version: "3"
 # Defines which compose version to use
 services:
   # Services line define which Docker images to run. In this case, it will be MySQL server and WordPress image.
   db:
-    image: mysql:5.7
+    image: mysql:8.0
     # image: mysql:5.7 indicates the MySQL database container image from Docker Hub used in this installation.
     restart: always
     environment:
-      MYSQL_ROOT_PASSWORD: MyR00tMySQLPa$$5w0rD
-      MYSQL_DATABASE: MyWordPressDatabaseName
-      MYSQL_USER: MyWordPressUser
-      MYSQL_PASSWORD: Pa$$5w0rD
-      # Previous four lines define the main variables needed for the MySQL container to work: database, database username, database user password, and the MySQL root password.
+      MYSQL_ROOT_PASSWORD: reviveRenovationsROOT
+      MYSQL_DATABASE: reviveRenovationsDB
+      MYSQL_USER: admin
+      MYSQL_PASSWORD: reviveRenovations
   phpmyadmin:
-      image: phpmyadmin/phpmyadmin:latest
-      restart: always
-      environment:
-        PMA_HOST: db
-        PMA_USER: reviveRenovations
-        PMA_PASSWORD: reviveRenovations
-      ports:
-        - "8080:80"
+    image: phpmyadmin/phpmyadmin:latest
+    restart: always
+    environment:
+      PMA_HOST: db
+      PMA_USER: admin
+      PMA_PASSWORD: reviveRenovations
+    ports:
+      - "8080:80"
+      # Previous four lines define the main variables needed for the MySQL container to work: database, database username, database user password, and the MySQL root password.
   wordpress:
     depends_on:
       - db
